@@ -1,9 +1,6 @@
 # Inherit Heroku OS
 FROM heroku/heroku:16
 
-# Set Node Version
-ENV NODE_ENGINE 8.9.0
-
 # Set the PATH for Node and any installed runnables
 ENV PATH /app/heroku/node/bin/:/app/user/node_modules/.bin:$PATH
 
@@ -33,6 +30,9 @@ WORKDIR /app/user
 
 # Install xz
 RUN apt-get update && apt-get install -y xz-utils && apt-get autoremove && apt-get clean
+
+# Set Node Version
+ENV NODE_ENGINE 9.0.0
 
 # Install Node
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x64.tar.xz" \
