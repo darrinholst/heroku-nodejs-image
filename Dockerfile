@@ -32,7 +32,7 @@ WORKDIR /app/user
 RUN apt-get update && apt-get install -y xz-utils && apt-get autoremove && apt-get clean
 
 # Set Node Version
-ENV NODE_ENGINE 9.0.0
+ENV NODE_ENGINE 8.9.1
 
 # Install Node
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x64.tar.xz" \
@@ -46,7 +46,7 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x6
 RUN echo "export PATH=\"/app/heroku/node/bin:/app/user/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
 
 # Install Yarn
-RUN npm install --global yarn@1.2.1
+RUN npm install --global yarn@1.3.2
 
 RUN echo "\n \
     node: $(node --version) \n \
