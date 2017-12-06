@@ -32,7 +32,7 @@ WORKDIR /app/user
 RUN apt-get update && apt-get install -y xz-utils && apt-get autoremove && apt-get clean
 
 # Set Node Version
-ENV NODE_ENGINE 8.9.1
+ENV NODE_ENGINE 8.9.2
 
 # Install Node
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x64.tar.xz" \
