@@ -1,13 +1,12 @@
 # Inherit Heroku OS
-FROM heroku/heroku:18.v15
+FROM heroku/heroku:18.v30
 
 # Set the PATH for Node and any installed runnables
 ENV PATH /app/heroku/node/bin/:/app/user/node_modules/.bin:$PATH
 
-# Add gpg keys listed at https://github.com/nodejs/node#release-team
+# Add gpg keys listed at https://github.com/nodejs/node#release-keys
 RUN set -ex \
   && for key in \
-
     4ED778F539E3634C779C87C6D7062848A1AB005C \
     94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
     71DCFD284A79C3B38668286BC97EC7A07EDE3FC1 \
@@ -33,7 +32,7 @@ WORKDIR /app/user
 RUN apt-get update && apt-get install -y xz-utils && apt-get autoremove && apt-get clean
 
 # Set Node Version
-ENV NODE_ENGINE 10.20.1
+ENV NODE_ENGINE 12.18.1
 
 # Install Node
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x64.tar.xz" \
@@ -47,7 +46,7 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x6
 RUN echo "export PATH=\"/app/heroku/node/bin:/app/user/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
 
 # Install Yarn
-RUN npm install --global yarn@1.16.0
+RUN npm install --global yarn@1.22.4
 
 RUN echo "\n \
     node: $(node --version) \n \
